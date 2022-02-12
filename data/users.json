@@ -1,0 +1,74 @@
+[
+  {
+    "id": "u1",
+    "firstName": "Alejandro",
+    "lastName": "La Rosa",
+    "documentType": "DNI",
+    "documentNumber": "70334799",
+    "email": "alejandrolarosa11apps@hotmail.com",
+    "phone": "987986889",
+    "country": "Peru",
+    "profileImageUrl": "",
+    "events": [
+      {
+        "eventName": "Test Event",
+        "eventCategory": "Tecnologia",
+        "eventPublicURL": "http://localhost:3000/events/test-event"
+      }
+    ]
+  },
+  {
+    "id": "u2",
+    "firstName": "Leonardo",
+    "lastName": "Roca",
+    "documentType": "DNI",
+    "documentNumber": "60345534",
+    "email": "leo.roca@hotmail.com",
+    "phone": "999999999",
+    "country": "Peru",
+    "profileImageUrl": "",
+    "events": []
+  },
+  {
+    "id": "u3",
+    "firstName": "Valeria",
+    "lastName": "Ramos",
+    "documentType": "DNI",
+    "documentNumber": "00987322",
+    "email": "variaramosg@gmail.com",
+    "phone": "999999999",
+    "country": "Peru",
+    "profileImageUrl": "",
+    "events": []
+  },
+  {
+    "id": "u4",
+    "firstName": "Santiago",
+    "lastName": "Correa",
+    "documentType": "DNI",
+    "documentNumber": "56746374",
+    "email": "santiagoooo@hotmail.com",
+    "phone": "999999999",
+    "country": "Peru",
+    "profileImageUrl": "",
+    "events": [
+      {
+        "eventName": "Ven a reir con Santiago!",
+        "eventCategory": "Comedia",
+        "eventPublicURL": "http://localhost:3000/events/ven-a-reir-con-santiago"
+      }
+    ]
+  },
+  {
+    "id": "u5",
+    "firstName": "Sandro",
+    "lastName": "Aguilar",
+    "documentType": "DNI",
+    "documentNumber": "11857349",
+    "email": "s.aguilar@gmail.com",
+    "phone": "999999999",
+    "country": "Peru",
+    "profileImageUrl": "",
+    "events": []
+  }
+]

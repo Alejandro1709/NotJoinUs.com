@@ -1,0 +1,35 @@
+[
+  {
+    "eventName": "Test Event",
+    "eventCategory": "Tecnologia",
+    "eventDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi volutpat nisi eget ex tincidunt, at tincidunt velit tristique. Pellentesque imperdiet ipsum ut ullamcorper facilisis. Proin in turpis faucibus, pretium sem ut, viverra velit. Nam leo lectus, tincidunt a volutpat vitae, varius a magna. Aenean tortor massa, malesuada vel quam id, faucibus faucibus metus. Vivamus pulvinar nulla vitae venenatis sagittis. Pellentesque eu pretium urna, quis tristique ligula. Nunc tincidunt",
+    "eventAdditionalInfo": "N/A",
+    "eventSlug": "test-event",
+    "eventPublicURL": "http://localhost:2002/events/test-event",
+    "eventStartDate": "2022-02-11T18:00:00Z",
+    "eventEndDate": "2022-02-11T21:00:00Z",
+    "eventAddress": "Nebula Club discoteca"
+  },
+  {
+    "eventName": "Ven a reir con Santiago!",
+    "eventCategory": "Comedia",
+    "eventDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi volutpat nisi eget ex tincidunt, at tincidunt velit tristique. Pellentesque imperdiet ipsum ut ullamcorper facilisis. Proin in turpis faucibus, pretium sem ut, viverra velit. Nam leo lectus, tincidunt a volutpat vitae, varius a magna. Aenean tortor massa, malesuada vel quam id, faucibus faucibus metus. Vivamus pulvinar nulla vitae venenatis sagittis. Pellentesque eu pretium urna, quis tristique ligula. Nunc tincidunt",
+    "eventAdditionalInfo": "N/A",
+    "eventSlug": "ven-a-reir-con-santiago",
+    "eventPublicURL": "http://localhost:2002/events/ven-a-reir-con-santiago",
+    "eventStartDate": "2022-02-11T18:00:00Z",
+    "eventEndDate": "2022-02-11T21:00:00Z",
+    "eventAddress": "Av. El Derby, Santiago de Surco 15023"
+  },
+  {
+    "eventName": "Viernes de locura",
+    "eventCategory": "Comedia",
+    "eventDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi volutpat nisi eget ex tincidunt, at tincidunt velit tristique. Pellentesque imperdiet ipsum ut ullamcorper facilisis. Proin in turpis faucibus, pretium sem ut, viverra velit. Nam leo lectus, tincidunt a volutpat vitae, varius a magna. Aenean tortor massa, malesuada vel quam id, faucibus faucibus metus. Vivamus pulvinar nulla vitae venenatis sagittis. Pellentesque eu pretium urna, quis tristique ligula. Nunc tincidunt",
+    "eventAdditionalInfo": "N/A",
+    "eventSlug": "viernes-de-locura",
+    "eventPublicURL": "http://localhost:2002/events/viernes-de-locura",
+    "eventStartDate": "2022-02-11T18:00:00Z",
+    "eventEndDate": "2022-02-11T21:00:00Z",
+    "eventAddress": "Somewhere over the rainbow"
+  }
+]

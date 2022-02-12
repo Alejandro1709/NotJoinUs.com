@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato&family=Redressed&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>JoinnUS | New Event</title>
+  </head>
+  <body>
+    <!-- NAVBAR START -->
+    <div class="navbar">
+      <div class="inner-nav">
+        <a id="main-a" href="/">
+          <h1 id="logo">
+            <span class="tag">!</span>Joinn<span class="tag">US</span>.com
+          </h1>
+        </a>
+        <nav role="navigation">
+          <ul>
+            <a href="#">Crear evento</a>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <!-- NAVBAR END -->
+    <main id="app">
+      <!-- MAIN FORM -->
+      <form action="/api/v1/events" method="POST" id="form">
+        <!-- ALERT VIEW -->
+        <!-- <div class="alert">
+          <span>Hola</span>
+        </div> -->
+        <!-- LEFT FORM -->
+        <!-- INPUTS -->
+        <div class="form-group">
+          <label for="eventName">Nombre del evento *</label>
+          <input name="eventName" type="text" id="eventName" required />
+        </div>
+        <!-- INPUTS -->
+        <div class="form-group">
+          <label for="eventImageURL">Imagen del evento *</label>
+          <!-- Make Required Later -->
+          <input name="eventImageURL" type="text" id="eventImageURL" />
+        </div>
+        <!-- INPUTS -->
+        <div class="form-group">
+          <label for="eventCategory">Categoria del evento *</label>
+          <select name="eventCategory" id="eventCategory" required>
+            <option>-- SELECCIONA UNA OPCION --</option>
+            <option value="arte-&-cultura">Arte & Cultura</option>
+            <option value="cine">Cine</option>
+            <option value="comida-&-bebidas">Comida & Bebidas</option>
+            <option value="conciertos">Conciertos</option>
+            <option value="cursos-y-talleres">Cursos y talleres</option>
+            <option value="deportes">Deportes</option>
+            <option value="donacion">Donación</option>
+            <option value="entretenimiento">Entretenimiento</option>
+            <option value="festivales">Festivales</option>
+            <option value="fiestas">Fiestas</option>
+            <option value="ninos">Niños</option>
+            <option value="salud-y-bienestar">Salud y bienestar</option>
+            <option value="semonarios-y-conferencias">
+              Seminarios y conferencias
+            </option>
+            <option value="servicios-comunitarios">
+              Servicios comunitarios
+            </option>
+            <option value="stand-up">Stand up</option>
+            <option value="teatro">Teatro</option>
+            <option value="tecnologia">Tecnología</option>
+            <option value="tiendas">Tiendas</option>
+            <option value="viajes-&-aventuras">Viajes & Aventuras</option>
+          </select>
+        </div>
+        <!-- INPUTS -->
+        <div class="form-group">
+          <label for="eventDescription">Descripción del evento *</label>
+          <textarea
+            name="eventDescription"
+            type="text"
+            id="eventDescription"
+            rows="10"
+            cols="40"
+            required
+          ></textarea>
+        </div>
+        <!-- INPUTS -->
+        <div class="form-group">
+          <label for="eventAdditionalInfo"
+            >Descripción Adicional del evento</label
+          >
+          <textarea
+            name="eventAdditionalInfo"
+            type="text"
+            id="eventAdditionalInfo"
+            rows="10"
+            cols="40"
+          ></textarea>
+        </div>
+        <!-- INPUTS -->
+        <div class="form-group">
+          <label for="eventStartDate">Fecha de inicio *</label>
+          <input
+            name="eventStartDate"
+            type="datetime-local"
+            id="eventStartDate"
+            required
+          />
+        </div>
+        <!-- INPUTS -->
+        <div class="form-group">
+          <label for="eventEndDate">Fecha de finalización *</label>
+          <input
+            name="eventEndDate"
+            type="datetime-local"
+            id="eventEndDate"
+            required
+          />
+        </div>
+        <!-- INPUTS -->
+        <div class="form-group">
+          <label for="eventAddress">Dirección del evento *</label>
+          <input name="eventAddress" type="text" id="eventAddress" required />
+        </div>
+        <button class="create-btn">Crear Evento</button>
+      </form>
+    </main>
+    <script src="/js/validation.js"></script>
+  </body>
+</html>
