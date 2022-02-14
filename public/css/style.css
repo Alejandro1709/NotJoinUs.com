@@ -132,10 +132,12 @@ header {
 }
 
 .events a {
+  display: inline;
   text-decoration: none;
   color: black;
 }
 .event {
+  display: inline-block;
   width: 100%;
   max-width: 45rem;
   background-color: white;
@@ -185,7 +187,7 @@ header {
   font-weight: bold;
 }
 
-.event .event-info .event-options button {
+.event .event-info .event-options .button {
   border: none;
   background-color: #6bbda7;
   color: white;
@@ -195,7 +197,7 @@ header {
   transition: all 0.1s;
 }
 
-.event .event-info .event-options button:hover {
+.event .event-info .event-options .button:hover {
   background-color: #55a892;
 }
 
