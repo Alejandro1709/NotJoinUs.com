@@ -11,7 +11,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/css/style.css" />
-    <title>JoinnUS | Home</title>
+    <title><%= event.eventName %></title>
   </head>
   <body>
     <!-- NAVBAR START -->
@@ -30,47 +30,8 @@
       </div>
     </div>
     <!-- NAVBAR END -->
-    <header>Header</header>
-    <main id="app">
-      <div class="search">
-        <form>
-          <input type="text" placeholder="Search Event..." />
-          <button>Search</button>
-        </form>
-      </div>
-      <div class="events">
-        <% for (let event of events) { %>
-        <article class="event">
-          <img src="<%= event.eventImageURL%>" alt="<%= event.eventName %>" />
-          <div class="event-info">
-            <h4><%= event.eventName %></h4>
-            <div class="event-date">
-              <svg
-                class="w-6 h-6 cal"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                ></path>
-              </svg>
-              <p id="event-date"><%= event.eventStartDate %></p>
-            </div>
-            <div class="event-options">
-              <p>Desde <span>S/ 69.00</span></p>
-              <a href="/events/<%= event.eventSlug %>" class="button"
-                >Comprar</a
-              >
-            </div>
-          </div>
-        </article>
-        <% } %>
-      </div>
+    <main>
+      <h1>Hello</h1>
     </main>
     <footer>
       <p>
