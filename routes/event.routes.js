@@ -29,6 +29,7 @@ router.post('/', async (req, res, next) => {
     eventCategory,
     eventDescription,
     eventAdditionalInfo,
+    eventImageURL,
     eventStartDate,
     eventEndDate,
     eventAddress,
@@ -39,6 +40,7 @@ router.post('/', async (req, res, next) => {
     eventCategory,
     eventDescription,
     eventAdditionalInfo,
+    eventImageURL,
     eventStartDate,
     eventEndDate,
     eventAddress,
@@ -53,7 +55,22 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-router.patch('/:slug', async (req, res) => {});
+router.patch('/:slug', async (req, res, next) => {
+  try {
+    const event = await Event.findOneAndUpdate(
+      { eventSlug: req.params.slug },
+      req.body,
+      { new: true, runValidators: true }
+    );
+
+    if (!event) {
+      throw next(new AppError(404, 'This Event Does Not Exists!'));
+    }
+    res.redirect('/');
+  } catch (error) {
+    next(error);
+  }
+});
 
 router.delete('/:slug', async (req, res) => {
   await Event.findOneAndDelete({ eventSlug: req.params.slug });
