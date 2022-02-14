@@ -2,8 +2,12 @@ const express = require('express');
 const path = require('path');
 const Event = require('./models/Event');
 const connectDB = require('./config/connectDB');
+const morgan = require('morgan');
+const dotenv = require('dotenv');
 const AppError = require('./utils/AppError');
 const app = express();
+
+dotenv.config();
 
 connectDB();
 
@@ -13,6 +17,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
 
 app.use('/api/v1/events', require('./routes/event.routes'));
 
@@ -24,6 +32,24 @@ app.get('/', async (req, res) => {
     events,
   });
 });
+
+//GET SINGLE EVENT
+app.get('/events/:slug', async (req, res, next) => {
+  try {
+    const event = await Event.findOne({ eventSlug: req.params.slug });
+
+    if (!event) {
+      throw next(new AppError(404, 'This Event Does Not Exists!'));
+    }
+
+    res.render('detail', {
+      event,
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
 // CREATE EVENT
 app.get('/create', (req, res) => {
   res.render('create');
@@ -41,4 +67,8 @@ app.use((err, req, res, next) => {
   res.status(status).send(err.message);
 });
 
-app.listen(2002, () => console.log('Server is live at: http://localhost:2002'));
+const port = process.env.PORT || 2002;
+
+app.listen(port, () =>
+  console.log(`Server is live at: http://localhost:${port}`)
+);
