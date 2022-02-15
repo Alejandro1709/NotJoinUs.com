@@ -75,7 +75,7 @@ router.patch('/:slug', async (req, res, next) => {
 router.delete('/:slug', async (req, res) => {
   await Event.findOneAndDelete({ eventSlug: req.params.slug });
 
-  res.status(200).json({ message: 'Deleted' });
+  res.redirect('/');
 });
 
 module.exports = router;
