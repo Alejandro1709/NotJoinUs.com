@@ -31,8 +31,38 @@
     </div>
     <!-- NAVBAR END -->
     <main>
-      <h1>Hello</h1>
+      <section class="container">
+        <article class="event-desc">
+          <header class="event-header">
+            <img src="<%= event.eventImageURL%>" alt="Header" />
+            <h1 class="event-heading"><%= event.eventName%></h1>
+            <p class="event-description"><%= event.eventDescription %></p>
+          <% if (event.eventAdditionalInfo) { %>
+            <h2 class="ad">Información Adicional</h2>
+            <p><%= event.eventAdditionalInfo %></p>
+          <% } else { %>
+          <% } %>
+          </header>
+
+          <aside>
+            <div class="top-side">
+              <h3><%= event.eventName %></h2>
+              <p>Fecha: <span id="event-date"><%= event.eventStartDate %></span></p>
+            </div>
+            <div class="bottom-side">
+              <div id='map' style='width: 100%; height: 300px;'></div>
+            </div>
+            <div class="bottom-actions">
+              <a class="edit-btn" href="/events/<%= event.eventSlug %>/edit">Edit</a>
+              <form action="/api/v1/events/<%= event.eventSlug %>?_method=DELETE" method="POST">
+                <button class="del-btn">Delete</button>
+              </form>
+            </div>
+          </aside>
+        </article>
+      </div>
     </main>
+
     <footer>
       <p>
         &copy; 2022 Alejandro La Rosa. Check The Real
@@ -45,6 +75,9 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css' rel='stylesheet' />
+    <script src="/js/mapbox.js"></script>
     <script src="/js/moment.js"></script>
   </body>
 </html>
