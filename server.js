@@ -4,6 +4,8 @@ const Event = require('./models/Event');
 const connectDB = require('./config/connectDB');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
+const session = require('express-session');
+const methodOverride = require('method-override');
 const AppError = require('./utils/AppError');
 const app = express();
 
@@ -14,7 +16,14 @@ connectDB();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+app.use(methodOverride('_method'));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
@@ -53,6 +62,23 @@ app.get('/events/:slug', async (req, res, next) => {
 // CREATE EVENT
 app.get('/create', (req, res) => {
   res.render('create');
+});
+
+//EDIT EVENT
+app.get('/events/:slug/edit', async (req, res) => {
+  try {
+    const event = await Event.findOne({ eventSlug: req.params.slug });
+
+    if (!event) {
+      throw next(new AppError(404, 'This Event Does Not Exists!'));
+    }
+
+    res.render('edit', {
+      event,
+    });
+  } catch (error) {
+    next(error);
+  }
 });
 
 // NOT FOUND Middleware
