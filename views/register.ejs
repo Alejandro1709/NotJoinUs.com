@@ -29,18 +29,18 @@
           Bienvenido a <span class="tag">!</span>Joinn<span class="tag">US</span
           >.com
         </h1>
-        <form class="auth-form">
+        <form action="/api/v1/auth/register" class="auth-form" method="POST">
           <div class="form-group">
             <label for="name">Nombre:</label>
-            <input type="text" id="name" />
+            <input name="firstName" type="text" id="name" />
           </div>
           <div class="form-group">
             <label for="email">Email:</label>
-            <input type="email" id="email" />
+            <input name="email" type="email" id="email" />
           </div>
           <div class="form-group">
             <label for="password">Contraseña:</label>
-            <input type="password" id="password" />
+            <input name="password" type="password" id="password" />
           </div>
           <div class="form-group">
             <button class="btn">Registrarme</button>
