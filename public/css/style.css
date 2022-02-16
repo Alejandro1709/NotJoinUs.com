@@ -80,7 +80,6 @@ nav ul a.active {
   /* height: 40rem; DESKTOP */
   height: 25rem;
   width: 100%;
-  margin-bottom: 2rem;
 }
 
 /* SEARCH BAR */
@@ -88,6 +87,7 @@ nav ul a.active {
   width: 100%;
   max-width: 90%;
   margin: 0 auto;
+  margin-top: 2rem;
   /* padding: 1rem 0; */
   height: 4rem;
   background-color: #f3f3f3;
@@ -232,15 +232,23 @@ select {
 }
 
 .alert {
+  display: flex;
+  font-size: 1.5rem;
+  color: white;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   margin: 0 auto;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
-  background-color: beige;
+  background-color: #55a892;
   margin-bottom: 1rem;
   height: 60px;
 }
 
+.alert.danger {
+  background-color: #ff7c7c;
+}
 .create-btn {
   margin-top: 0.5rem;
   padding: 1rem;

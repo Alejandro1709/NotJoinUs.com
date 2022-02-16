@@ -31,6 +31,11 @@
     </div>
     <!-- NAVBAR END -->
     <header id="header"></header>
+    <% if (success && success.length) { %>
+    <div class="alert"><%= success %></div>
+    <% } %> <% if (error && error.length) { %>
+    <div class="alert danger"><%= error %></div>
+    <% } %>
     <main id="app">
       <div class="search">
         <form>

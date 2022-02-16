@@ -7,6 +7,7 @@ const dotenv = require('dotenv');
 const session = require('express-session');
 const methodOverride = require('method-override');
 const AppError = require('./utils/AppError');
+const connectFlash = require('connect-flash');
 const app = express();
 
 dotenv.config();
@@ -23,9 +24,16 @@ app.use(
     saveUninitialized: true,
   })
 );
+app.use(connectFlash());
 app.use(methodOverride('_method'));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+
+app.use((req, res, next) => {
+  res.locals.success = req.flash('success');
+  res.locals.error = req.flash('error');
+  next();
+});
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
@@ -48,7 +56,8 @@ app.get('/events/:slug', async (req, res, next) => {
     const event = await Event.findOne({ eventSlug: req.params.slug });
 
     if (!event) {
-      throw next(new AppError(404, 'This Event Does Not Exists!'));
+      req.flash('error', 'This Event does not exists!');
+      return res.redirect('/');
     }
 
     res.render('detail', {
@@ -70,7 +79,8 @@ app.get('/events/:slug/edit', async (req, res) => {
     const event = await Event.findOne({ eventSlug: req.params.slug });
 
     if (!event) {
-      throw next(new AppError(404, 'This Event Does Not Exists!'));
+      req.flash('error', 'This Event does not exists!');
+      return res.redirect('/');
     }
 
     res.render('edit', {

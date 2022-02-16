@@ -49,6 +49,8 @@ router.post('/', async (req, res, next) => {
   try {
     const createdEvent = await event.save();
 
+    req.flash('success', 'Evento Creado!');
+
     res.redirect('/');
   } catch (error) {
     next(error);
@@ -66,6 +68,8 @@ router.patch('/:slug', async (req, res, next) => {
     if (!event) {
       throw next(new AppError(404, 'This Event Does Not Exists!'));
     }
+
+    req.flash('success', 'Evento Actualizado!');
     res.redirect('/');
   } catch (error) {
     next(error);
@@ -75,6 +79,7 @@ router.patch('/:slug', async (req, res, next) => {
 router.delete('/:slug', async (req, res) => {
   await Event.findOneAndDelete({ eventSlug: req.params.slug });
 
+  req.flash('success', 'Evento eliminado!');
   res.redirect('/');
 });
 
