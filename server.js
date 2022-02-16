@@ -22,6 +22,7 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
+    cookie: { secure: false },
   })
 );
 app.use(connectFlash());
@@ -40,6 +41,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 app.use('/api/v1/events', require('./routes/event.routes'));
+app.use('/api/v1/auth', require('./routes/user.routes'));
 
 // HOME SCREEN
 app.get('/', async (req, res) => {
@@ -70,6 +72,9 @@ app.get('/events/:slug', async (req, res, next) => {
 
 // CREATE EVENT
 app.get('/create', (req, res) => {
+  if (!req.session.user) {
+    return res.redirect('/login');
+  }
   res.render('create');
 });
 
