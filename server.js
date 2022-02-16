@@ -91,6 +91,15 @@ app.get('/events/:slug/edit', async (req, res) => {
   }
 });
 
+// LOGIN SCREEN
+app.get('/login', (req, res) => {
+  res.render('login');
+});
+// REGISTER SCREEN
+app.get('/register', (req, res) => {
+  res.render('register');
+});
+
 // NOT FOUND Middleware
 app.all('*', (req, res, next) => {
   next(new AppError(404, 'Page Not Found!'));
