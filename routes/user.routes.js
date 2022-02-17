@@ -18,6 +18,8 @@ router.post('/login', async (req, res, next) => {
 
     if (validPassword) {
       req.session.user_id = user._id;
+      req.session.save();
+      req.flash('success', 'You are now Logged in!');
       res.redirect('/');
     } else {
       throw next(new AppError(401, 'Inavlid Email Or Password!'));
@@ -42,6 +44,8 @@ router.post('/register', async (req, res, next) => {
   try {
     const savedUser = await user.save();
     req.session.user_id = savedUser._id;
+    req.session.save();
+    req.flash('success', 'You are now Logged in!');
     res.redirect('/');
   } catch (error) {
     next(error);

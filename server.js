@@ -22,7 +22,7 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false },
+    cookie: { secure: false, maxAge: 24 * 60 * 60 * 1000 },
   })
 );
 app.use(connectFlash());
@@ -72,7 +72,7 @@ app.get('/events/:slug', async (req, res, next) => {
 
 // CREATE EVENT
 app.get('/create', (req, res) => {
-  if (!req.session.user) {
+  if (!req.session.user_id) {
     return res.redirect('/login');
   }
   res.render('create');
