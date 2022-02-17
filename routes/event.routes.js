@@ -1,6 +1,7 @@
 const express = require('express');
 const Event = require('../models/Event');
 const AppError = require('../utils/AppError');
+const protect = require('../middlewares/authMiddleware');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
@@ -23,7 +24,7 @@ router.get('/:slug', async (req, res, next) => {
   }
 });
 
-router.post('/', async (req, res, next) => {
+router.post('/', protect, async (req, res, next) => {
   const {
     eventName,
     eventCategory,
@@ -57,7 +58,7 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-router.patch('/:slug', async (req, res, next) => {
+router.patch('/:slug', protect, async (req, res, next) => {
   try {
     const event = await Event.findOneAndUpdate(
       { eventSlug: req.params.slug },
@@ -76,7 +77,7 @@ router.patch('/:slug', async (req, res, next) => {
   }
 });
 
-router.delete('/:slug', async (req, res) => {
+router.delete('/:slug', protect, async (req, res) => {
   await Event.findOneAndDelete({ eventSlug: req.params.slug });
 
   req.flash('success', 'Evento eliminado!');

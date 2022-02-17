@@ -8,6 +8,7 @@ const session = require('express-session');
 const methodOverride = require('method-override');
 const AppError = require('./utils/AppError');
 const connectFlash = require('connect-flash');
+const protect = require('./middlewares/authMiddleware');
 const app = express();
 
 dotenv.config();
@@ -71,10 +72,7 @@ app.get('/events/:slug', async (req, res, next) => {
 });
 
 // CREATE EVENT
-app.get('/create', (req, res) => {
-  if (!req.session.user_id) {
-    return res.redirect('/login');
-  }
+app.get('/create', protect, (req, res) => {
   res.render('create');
 });
 

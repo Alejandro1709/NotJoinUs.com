@@ -14,9 +14,9 @@ router.post('/login', async (req, res, next) => {
       throw next(new AppError(401, 'Inavlid Email Or Password!'));
     }
 
-    const validPassword = await bcrypt.compare(password, user.password);
+    // const validPassword = await bcrypt.compare(password, user.password);
 
-    if (validPassword) {
+    if (user.matchPasswords(password, user.password)) {
       req.session.user_id = user._id;
       req.session.save();
       req.flash('success', 'You are now Logged in!');
@@ -33,13 +33,10 @@ router.post('/login', async (req, res, next) => {
 router.post('/register', async (req, res, next) => {
   const { firstName, email, password } = req.body;
 
-  const salt = await bcrypt.genSalt(12);
-  const hash = await bcrypt.hash(password, salt);
-
   let user = new User({
     firstName,
     email,
-    password: hash,
+    password,
   });
   try {
     const savedUser = await user.save();
@@ -50,6 +47,11 @@ router.post('/register', async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+});
+
+router.post('/logout', (req, res) => {
+  req.session.user_id = null;
+  res.redirect('/login');
 });
 
 module.exports = router;
