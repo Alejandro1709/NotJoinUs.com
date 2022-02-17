@@ -396,6 +396,19 @@ footer p a {
     flex-wrap: wrap;
     justify-content: center;
   }
+
+  .event-desc {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 2rem;
+    max-width: 60%;
+    margin: 0 auto;
+  }
+
+  .event-header {
+    width: 50%;
+  }
 }
 
 @media screen and (min-width: 38.125em) {
@@ -408,6 +421,12 @@ footer p a {
     flex-wrap: wrap;
     justify-content: center;
   }
+
+  .event-desc {
+    width: 100%;
+    max-width: 60%;
+    margin: 0 auto;
+  }
 }
 
 @media screen and (min-width: 46.75em) {
@@ -419,5 +438,11 @@ footer p a {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+  }
+
+  .event-desc {
+    width: 100%;
+    max-width: 60%;
+    margin: 0 auto;
   }
 }
