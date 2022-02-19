@@ -2,6 +2,9 @@ const express = require('express');
 const Event = require('../models/Event');
 const AppError = require('../utils/AppError');
 const { protect, isEventOwner } = require('../middlewares/authMiddleware');
+const multer = require('multer');
+const { storage } = require('../cloudinary/index');
+const upload = multer({ storage });
 const router = express.Router();
 
 router.get('/', async (req, res) => {
@@ -24,40 +27,47 @@ router.get('/:slug', async (req, res, next) => {
   }
 });
 
-router.post('/', protect, async (req, res, next) => {
-  const {
-    eventName,
-    eventCategory,
-    eventDescription,
-    eventAdditionalInfo,
-    eventImageURL,
-    eventStartDate,
-    eventEndDate,
-    eventAddress,
-  } = req.body;
+router.post(
+  '/',
+  protect,
+  upload.single('eventImageURL'),
+  async (req, res, next) => {
+    const {
+      eventName,
+      eventCategory,
+      eventDescription,
+      eventAdditionalInfo,
+      eventStartDate,
+      eventEndDate,
+      eventAddress,
+    } = req.body;
 
-  let event = new Event({
-    eventName,
-    eventCategory,
-    eventDescription,
-    eventAdditionalInfo,
-    eventImageURL,
-    eventStartDate,
-    eventEndDate,
-    eventAddress,
-    eventOwner: req.session.user_id,
-  });
+    let event = new Event({
+      eventName,
+      eventCategory,
+      eventDescription,
+      eventAdditionalInfo,
+      eventImageURL: {
+        url: req.file.path,
+        filename: req.file.filename,
+      },
+      eventStartDate,
+      eventEndDate,
+      eventAddress,
+      eventOwner: req.session.user_id,
+    });
 
-  try {
-    const createdEvent = await event.save();
+    try {
+      const createdEvent = await event.save();
 
-    req.flash('success', 'Evento Creado!');
+      req.flash('success', 'Evento Creado!');
 
-    res.redirect('/');
-  } catch (error) {
-    next(error);
+      res.redirect('/');
+    } catch (error) {
+      next(error);
+    }
   }
-});
+);
 
 router.patch('/:slug', protect, isEventOwner, async (req, res, next) => {
   try {

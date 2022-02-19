@@ -51,7 +51,8 @@ const eventSchema = new mongoose.Schema({
   },
   eventImageURL: {
     // Hacer campo como requerido luego
-    type: String,
+    url: String,
+    filename: String,
   },
   eventStartDate: {
     type: Date,
