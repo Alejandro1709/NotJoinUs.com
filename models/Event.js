@@ -77,7 +77,7 @@ const eventSchema = new mongoose.Schema({
 
 eventSchema.pre('save', function () {
   this.eventSlug = slugify(this.eventName).toLowerCase();
-  this.eventPublicURL = `http://localhost:2002/events/${this.eventSlug}`;
+  this.eventPublicURL = `http://localhost:2001/events/${this.eventSlug}`;
 });
 
 const Event = mongoose.model('Event', eventSchema);
