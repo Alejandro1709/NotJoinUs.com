@@ -49,7 +49,7 @@ router.post(
       eventAdditionalInfo,
       eventImageURL: {
         url: req.file.path,
-        filename: req.file.filename,
+        filename: req.file.filename.split('/')[1],
       },
       eventStartDate,
       eventEndDate,
