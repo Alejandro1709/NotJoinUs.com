@@ -26,6 +26,7 @@
           <% if (currentUser) {%>
           <ul>
             <a href="/create">Crear evento</a>
+            <a href="/api/v1/auth/logout">Logout</a>
           </ul>
           <% } else { %>
           <ul>
@@ -38,7 +39,12 @@
     <!-- NAVBAR END -->
     <main id="app">
       <!-- MAIN FORM -->
-      <form action="/api/v1/events" method="POST" id="form">
+      <form
+        action="/api/v1/events"
+        method="POST"
+        id="form"
+        enctype="multipart/form-data"
+      >
         <!-- ALERT VIEW -->
         <!-- <div class="alert">
           <span>Hola</span>
@@ -53,7 +59,7 @@
         <div class="form-group">
           <label for="eventImageURL">Imagen del evento *</label>
           <!-- Make Required Later -->
-          <input name="eventImageURL" type="text" id="eventImageURL" />
+          <input name="eventImageURL" type="file" id="eventImageURL" />
         </div>
         <!-- INPUTS -->
         <div class="form-group">

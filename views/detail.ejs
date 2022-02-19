@@ -26,6 +26,7 @@
           <% if (currentUser) {%>
           <ul>
             <a href="/create">Crear evento</a>
+            <a href="/api/v1/auth/logout">Logout</a>
           </ul>
           <% } else { %>
           <ul>
@@ -40,7 +41,7 @@
       <section class="container">
         <article class="event-desc">
           <header class="event-header">
-            <img src="<%= event.eventImageURL%>" alt="Header" />
+            <img src="<%= event.eventImageURL.url%>" alt="Header" />
             <h1 class="event-heading"><%= event.eventName%></h1>
             <p class="event-description"><%= event.eventDescription %></p>
           <% if (event.eventAdditionalInfo) { %>
