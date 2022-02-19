@@ -23,9 +23,15 @@
           </h1>
         </a>
         <nav role="navigation">
+          <% if (currentUser) {%>
           <ul>
-            <a href="#">Crear evento</a>
+            <a href="/create">Crear evento</a>
           </ul>
+          <% } else { %>
+          <ul>
+            <a href="/login">Login</a>
+          </ul>
+          <% } %>
         </nav>
       </div>
     </div>
