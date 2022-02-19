@@ -54,15 +54,18 @@
             <div class="top-side">
               <h3><%= event.eventName %></h2>
               <p>Fecha: <span id="event-date"><%= event.eventStartDate %></span></p>
+              <p>Event created by: <%= event.eventOwner.email %></p>
             </div>
             <div class="bottom-side">
               <div id='map' style='width: 100%; height: 300px;'></div>
             </div>
             <div class="bottom-actions">
-              <a class="edit-btn" href="/events/<%= event.eventSlug %>/edit">Edit</a>
-              <form action="/api/v1/events/<%= event.eventSlug %>?_method=DELETE" method="POST">
-                <button class="del-btn">Delete</button>
-              </form>
+              <% if (event.eventOwner.equals(currentUser)) { %>
+                <a class="edit-btn" href="/events/<%= event.eventSlug %>/edit">Edit</a>
+                <form action="/api/v1/events/<%= event.eventSlug %>?_method=DELETE" method="POST">
+                  <button class="del-btn">Delete</button>
+                </form>
+                <% } %>
             </div>
           </aside>
         </article>

@@ -1,7 +1,7 @@
 const express = require('express');
 const Event = require('../models/Event');
 const AppError = require('../utils/AppError');
-const protect = require('../middlewares/authMiddleware');
+const { protect, isEventOwner } = require('../middlewares/authMiddleware');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
@@ -45,6 +45,7 @@ router.post('/', protect, async (req, res, next) => {
     eventStartDate,
     eventEndDate,
     eventAddress,
+    eventOwner: req.session.user_id,
   });
 
   try {
@@ -58,7 +59,7 @@ router.post('/', protect, async (req, res, next) => {
   }
 });
 
-router.patch('/:slug', protect, async (req, res, next) => {
+router.patch('/:slug', protect, isEventOwner, async (req, res, next) => {
   try {
     const event = await Event.findOneAndUpdate(
       { eventSlug: req.params.slug },
@@ -67,7 +68,8 @@ router.patch('/:slug', protect, async (req, res, next) => {
     );
 
     if (!event) {
-      throw next(new AppError(404, 'This Event Does Not Exists!'));
+      req.flash('This event does not exists!');
+      return res.redirect('/');
     }
 
     req.flash('success', 'Evento Actualizado!');
@@ -77,7 +79,7 @@ router.patch('/:slug', protect, async (req, res, next) => {
   }
 });
 
-router.delete('/:slug', protect, async (req, res) => {
+router.delete('/:slug', protect, isEventOwner, async (req, res) => {
   await Event.findOneAndDelete({ eventSlug: req.params.slug });
 
   req.flash('success', 'Evento eliminado!');

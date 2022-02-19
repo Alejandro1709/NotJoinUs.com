@@ -37,6 +37,7 @@ router.post('/register', async (req, res, next) => {
     email,
     password,
   });
+
   try {
     const savedUser = await user.save();
     req.session.user_id = savedUser._id;
@@ -48,9 +49,9 @@ router.post('/register', async (req, res, next) => {
   }
 });
 
-router.post('/logout', (req, res) => {
+router.get('/logout', (req, res) => {
   req.session.user_id = null;
-  res.redirect('/login');
+  res.redirect('/');
 });
 
 module.exports = router;

@@ -8,7 +8,7 @@ const session = require('express-session');
 const methodOverride = require('method-override');
 const AppError = require('./utils/AppError');
 const connectFlash = require('connect-flash');
-const protect = require('./middlewares/authMiddleware');
+const { protect, isEventOwner } = require('./middlewares/authMiddleware');
 const app = express();
 
 dotenv.config();
@@ -57,7 +57,9 @@ app.get('/', async (req, res) => {
 //GET SINGLE EVENT
 app.get('/events/:slug', async (req, res, next) => {
   try {
-    const event = await Event.findOne({ eventSlug: req.params.slug });
+    const event = await Event.findOne({ eventSlug: req.params.slug }).populate(
+      'eventOwner'
+    );
 
     if (!event) {
       req.flash('error', 'This Event does not exists!');
@@ -78,7 +80,7 @@ app.get('/create', protect, (req, res) => {
 });
 
 //EDIT EVENT
-app.get('/events/:slug/edit', async (req, res) => {
+app.get('/events/:slug/edit', protect, isEventOwner, async (req, res) => {
   try {
     const event = await Event.findOne({ eventSlug: req.params.slug });
 

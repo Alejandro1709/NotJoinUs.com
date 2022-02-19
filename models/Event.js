@@ -68,6 +68,10 @@ const eventSchema = new mongoose.Schema({
     required: [true, 'Your event must have an address'],
     trim: true,
   },
+  eventOwner: {
+    type: mongoose.Types.ObjectId,
+    ref: 'User',
+  },
 });
 
 eventSchema.pre('save', function () {
