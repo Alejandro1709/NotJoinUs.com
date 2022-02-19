@@ -77,7 +77,6 @@ nav ul a.active {
   background: url('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3000&q=80');
   background-position: center;
   background-size: cover;
-  /* height: 40rem; DESKTOP */
   height: 25rem;
   width: 100%;
 }
@@ -390,7 +389,9 @@ footer p a {
   html {
     font-size: 50%;
   }
-
+  #header {
+    height: 40rem;
+  }
   .events {
     flex-direction: row;
     flex-wrap: wrap;
@@ -416,6 +417,9 @@ footer p a {
     font-size: 50%;
   } */
 
+  #header {
+    height: 40rem;
+  }
   .events {
     flex-direction: row;
     flex-wrap: wrap;
@@ -433,6 +437,9 @@ footer p a {
   /* html {
     font-size: 50%;
   } */
+  #header {
+    height: 40rem;
+  }
 
   .events {
     flex-direction: row;
