@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -53,7 +54,10 @@
       <div class="events">
         <% for (let event of events) { %>
         <article class="event">
-          <img src="<%= event.eventImageURL%>" alt="<%= event.eventName %>" />
+          <img
+            src="https://res.cloudinary.com/dn79mzc6d/image/upload/c_fill,h_201,w_358/NotJoinUs/<%= event.eventImageURL.filename %>.jpg"
+            alt="<%= event.eventName %>"
+          />
           <div class="event-info">
             <h4><%= event.eventName %></h4>
             <div class="event-date">
