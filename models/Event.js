@@ -69,6 +69,17 @@ const eventSchema = new mongoose.Schema({
     required: [true, 'Your event must have an address'],
     trim: true,
   },
+  geometry: {
+    type: {
+      type: String,
+      enum: ['Point'],
+      required: true,
+    },
+    coordinates: {
+      type: [Number],
+      required: true,
+    },
+  },
   eventOwner: {
     type: mongoose.Types.ObjectId,
     ref: 'User',
