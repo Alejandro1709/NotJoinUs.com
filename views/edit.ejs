@@ -44,6 +44,7 @@
         action="/api/v1/events/<%= event.eventSlug %>?_method=PATCH"
         method="POST"
         id="form"
+        enctype="multipart/form-data"
       >
         <!-- ALERT VIEW -->
         <!-- <div class="alert">
@@ -65,12 +66,11 @@
         <div class="form-group">
           <label for="eventImageURL">Imagen del evento *</label>
           <!-- Make Required Later -->
-          <input
-            name="eventImageURL"
-            type="text"
-            id="eventImageURL"
-            value="<%= event.eventImageURL%>"
-          />
+          <input name="eventImageURL" type="file" id="eventImageURL" required />
+        </div>
+        <!-- EDIT -->
+        <div class="form-group">
+          <img src="" alt="Photo" />
         </div>
         <!-- INPUTS -->
         <div class="form-group">

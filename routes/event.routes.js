@@ -1,11 +1,14 @@
 const express = require('express');
 const Event = require('../models/Event');
 const AppError = require('../utils/AppError');
+const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
 const { protect, isEventOwner } = require('../middlewares/authMiddleware');
 const multer = require('multer');
 const { storage } = require('../cloudinary/index');
 const upload = multer({ storage });
 const router = express.Router();
+
+const geocoding = mbxGeocoding({ accessToken: process.env.MAPBOX_TOKEN });
 
 router.get('/', async (req, res) => {
   const events = await Event.find();
@@ -42,6 +45,13 @@ router.post(
       eventAddress,
     } = req.body;
 
+    const geoData = await geocoding
+      .forwardGeocode({
+        query: eventAddress,
+        limit: 1,
+      })
+      .send();
+
     let event = new Event({
       eventName,
       eventCategory,
@@ -54,6 +64,7 @@ router.post(
       eventStartDate,
       eventEndDate,
       eventAddress,
+      geometry: geoData.body.features[0].geometry,
       eventOwner: req.session.user_id,
     });
 
@@ -69,25 +80,37 @@ router.post(
   }
 );
 
-router.patch('/:slug', protect, isEventOwner, async (req, res, next) => {
-  try {
-    const event = await Event.findOneAndUpdate(
-      { eventSlug: req.params.slug },
-      req.body,
-      { new: true, runValidators: true }
-    );
+router.patch(
+  '/:slug',
+  protect,
+  isEventOwner,
+  upload.single('file'),
+  async (req, res, next) => {
+    try {
+      const event = await Event.findOneAndUpdate(
+        { eventSlug: req.params.slug },
+        {
+          eventImageURL: {
+            url: req.file.path,
+            filename: req.file.filename.split('/')[1],
+          },
+          ...req.body,
+        },
+        { new: true, runValidators: true }
+      );
 
-    if (!event) {
-      req.flash('This event does not exists!');
-      return res.redirect('/');
+      if (!event) {
+        req.flash('This event does not exists!');
+        return res.redirect('/');
+      }
+
+      req.flash('success', 'Evento Actualizado!');
+      res.redirect('/');
+    } catch (error) {
+      next(error);
     }
-
-    req.flash('success', 'Evento Actualizado!');
-    res.redirect('/');
-  } catch (error) {
-    next(error);
   }
-});
+);
 
 router.delete('/:slug', protect, isEventOwner, async (req, res) => {
   await Event.findOneAndDelete({ eventSlug: req.params.slug });
